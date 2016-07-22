@@ -10,6 +10,7 @@ Chapiter 1: First steps with asyncio
 
    getting_started.rst
    hello_world.rst
+   hello_world2.rst
    hello_clock.rst
    http_client.rst
    tcp_echo_client.rst

@@ -5,9 +5,5 @@ async def say(what, when):
     print(what)
 
 loop = asyncio.get_event_loop()
-loop.create_task(say('hello', 0.5))
-loop.create_task(say('world', 1.0))
-try:
-    loop.run_forever()
-finally:
-    loop.close()
+loop.run_until_complete(say('hello world', 1))
+loop.close()
