@@ -1,7 +1,9 @@
++++++++++++++++++++++
 Asyncio Documentation
-=====================
++++++++++++++++++++++
 
-Contents:
+Chapiter 1: First steps with asyncio
+====================================
 
 .. toctree::
    :maxdepth: 2
@@ -10,12 +12,21 @@ Contents:
    hello_world.rst
    hello_clock.rst
    http_client.rst
-   threads.rst
    tcp_echo_client.rst
    twisted.rst
    getting_help.rst
 
-See also:
+Chapiter 2: Advanced topics
+===========================
+
+.. toctree::
+   :maxdepth: 2
+
+   threads.rst
+
+
+See also
+========
 
 * `asyncio wiki <https://github.com/python/asyncio/wiki>`_
 * `asyncio Reference Documentation
