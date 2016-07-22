@@ -22,4 +22,7 @@ async def consume():
 
 queue = asyncio.Queue()
 asyncio.ensure_future(produce(10))
-asyncio.get_event_loop().run_until_complete(consume())
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(consume())
+loop.close()
