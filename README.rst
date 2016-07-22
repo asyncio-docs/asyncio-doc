@@ -3,7 +3,7 @@ Asyncio documentation
 
 * Online doc: http://asyncio.readthedocs.io/
 * GitHub: https://github.com/haypo/asyncio-doc
-
+* AsyncIO documentation is written with `Sphinx <http://www.sphinx-doc.org/>`_.
 
 Ideas
 =====
@@ -13,11 +13,23 @@ Ideas
   - protocols and transports: as least point to good implementations
   - explain how to *test* asyncio applications. `Twisted documentation example <https://twistedmatrix.com/documents/current/core/howto/trial.html>`_
 
+How to install Sphinx
+=====================
 
-HOWTO build the documentation
-=============================
+Firstly, you need to install the Sphinx tool using the Linux package manager
+like ap-tget or dnf for example.
 
-asyncio documentation is written with `Sphinx <http://www.sphinx-doc.org/>`_.
+But if you want to install it via `pip <https://pip.pypa.io/en/stable/>`_ , you
+can create a virtual environment with the `venv` module of Python 3 ::
+
+    python3 -m venv env
+    source env/bin/activate
+
+Once you have installed Sphinx, you can build the documentation.
+
+How to build the documentation
+==============================
+
 Install Sphinx using the Linux package manager like apt-get or dnf for example.
 Then build the documentation using::
 
