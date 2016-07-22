@@ -12,3 +12,4 @@ with aiohttp.ClientSession(loop=loop) as session:
     content = loop.run_until_complete(
         fetch_page(session, 'http://python.org'))
     print(content)
+loop.close()
