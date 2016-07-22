@@ -32,7 +32,7 @@ Also note that this example will never terminate, as the loop is asked to
 This third example adds another task that will stop the event loop before
 all scheduled tasks could execute, which results in a warning.
 
-.. literalinclude:: examples/stop_loop.py
+.. literalinclude:: examples/loop_stop.py
 
 | Task was destroyed but it is pending!
 | task: <Task pending coro=<say() done, defined at examples/loop_stop.py:3> wait_for=<Future pending cb=[Task._wakeup()]>>
