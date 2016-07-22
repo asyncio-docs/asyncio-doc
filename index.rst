@@ -28,6 +28,15 @@ Chapiter 2: Advanced topics
    debug_mode.rst
 
 
+Indices and tables
+==================
+
+.. toctree::
+   :maxdepth: 2
+
+   glossary.rst
+
+
 See also
 ========
 
