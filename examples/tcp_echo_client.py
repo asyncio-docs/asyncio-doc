@@ -1,26 +1,21 @@
 import asyncio
 
-class EchoClientProtocol(asyncio.Protocol):
-    def __init__(self, message, loop):
-        self.message = message
-        self.loop = loop
 
-    def connection_made(self, transport):
-        transport.write(self.message.encode())
-        print('Data sent: {!r}'.format(self.message))
+async def tcp_echo_client(message, loop):
+    reader, writer = await asyncio.open_connection('127.0.0.1', 8888,
+                                                   loop=loop)
 
-    def data_received(self, data):
-        print('Data received: {!r}'.format(data.decode()))
+    print('Send: %r' % message)
+    writer.write(message.encode())
 
-    def connection_lost(self, exc):
-        print('The server closed the connection')
-        print('Stop the event loop')
-        self.loop.stop()
+    data = await reader.read(100)
+    print('Received: %r' % data.decode())
 
-loop = asyncio.get_event_loop()
+    print('Close the socket')
+    writer.close()
+
+
 message = 'Hello World!'
-coro = loop.create_connection(lambda: EchoClientProtocol(message, loop),
-                              '127.0.0.1', 8888)
-loop.run_until_complete(coro)
-loop.run_forever()
+loop = asyncio.get_event_loop()
+loop.run_until_complete(tcp_echo_client(message, loop))
 loop.close()

@@ -12,7 +12,6 @@ Chapiter 1: First steps with asyncio
    hello_world.rst
    hello_clock.rst
    http_client.rst
-   tcp_echo_client.rst
    twisted.rst
    getting_help.rst
 
@@ -23,6 +22,7 @@ Chapiter 2: Advanced topics
 .. toctree::
    :maxdepth: 2
 
+   tcp_echo.rst
    threads.rst
    producer_consumer.rst
    debug_mode.rst

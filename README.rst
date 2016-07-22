@@ -5,6 +5,14 @@ Asyncio documentation
 * GitHub: https://github.com/haypo/asyncio-doc
 * AsyncIO documentation is written with `Sphinx <http://www.sphinx-doc.org/>`_.
 
+
+Notes to writers
+================
+
+Tutorials should use Python 3.5 ``async`` and ``await`` keywords rather than
+``yield from``.
+
+
 Ideas
 =====
 
