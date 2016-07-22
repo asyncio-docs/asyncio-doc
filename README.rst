@@ -11,7 +11,7 @@ Ideas
 * Advanced section:
 
   - protocols and transports: as least point to good implementations
-  - explain how to *test* asyncio applications
+  - explain how to *test* asyncio applications. `Twisted documentation example <https://twistedmatrix.com/documents/current/core/howto/trial.html>`_
 
 
 HOWTO build the documentation
