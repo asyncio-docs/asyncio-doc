@@ -7,6 +7,7 @@ Contents:
    :maxdepth: 2
 
    hello_world.rst
+   http_client.rst
    tcp_echo_client.rst
    twisted.rst
    getting_help.rst
