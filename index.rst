@@ -14,6 +14,7 @@ Chapiter 1: First steps with asyncio
    hello_clock.rst
    http_client.rst
    tcp_echo_client.rst
+   producer_consumer.rst
    twisted.rst
    getting_help.rst
 
