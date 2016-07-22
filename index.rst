@@ -47,3 +47,6 @@ See also
   <http://aosabook.org/en/500L/a-web-crawler-with-asyncio-coroutines.html>`_
   by A. Jesse Jiryu Davis and Guido van Rossum
 * `asyncio.org <http://asyncio.org/>`_
+* `Writing Redis in Python with asyncio: Part 1
+  <http://jamesls.com/writing-redis-in-python-with-asyncio-part-1.html>`_
+  by James Saryerwinnie
