@@ -17,6 +17,7 @@ Chapiter 1: First steps with asyncio
    twisted.rst
    getting_help.rst
 
+
 Chapiter 2: Advanced topics
 ===========================
 
@@ -24,6 +25,7 @@ Chapiter 2: Advanced topics
    :maxdepth: 2
 
    threads.rst
+   debug_mode.rst
 
 
 See also
