@@ -8,5 +8,8 @@ Glossary
 
 .. glossary::
 
-   coroutine
-      A coroutine is XXX.
+    coroutine
+        It's a piece of code that can be paused and resumed. Whereas threads are preemptively multitasked by the operating system, coroutines multitask cooperatively: they choose when to pause, and which coroutine to run next.
+
+    event loop
+        The event loop is the central execution device to launch execution of coroutines and handle I/O (Network, sub-processes...)
