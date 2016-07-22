@@ -2,27 +2,34 @@ import asyncio
 import random
 
 
-async def produce(n):
-    for item in range(n):
-        print('producing {}...'.format(item))
+async def produce(queue, n):
+    for x in range(1, n + 1):
+        # produce an item (simulate slow proces using sleep)
+        print('producing {}/{}'.format(x, n))
         await asyncio.sleep(random.random())
+        item = str(x)
+
         await queue.put(item)
+
     # Indicate the producer is done
     await queue.put(None)
 
 
-async def consume():
+async def consume(queue):
     while True:
+        # wait for an item from the producer
         item = await queue.get()
         if item is None:
+            # the producer emits None to indicate tha it is done
             break
-        print('consuming {}...'.format(item))
+
+        # process the item
+        print('consuming item {}...'.format(item))
         await asyncio.sleep(random.random())
 
 
-queue = asyncio.Queue()
-asyncio.ensure_future(produce(10))
-
 loop = asyncio.get_event_loop()
-loop.run_until_complete(consume())
+queue = asyncio.Queue(loop=loop)
+asyncio.ensure_future(produce(queue, 10), loop=loop)
+loop.run_until_complete(consume(queue))
 loop.close()

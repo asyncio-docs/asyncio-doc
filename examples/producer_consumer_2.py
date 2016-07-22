@@ -4,16 +4,24 @@ import random
 
 async def produce(queue, n):
     for x in range(n):
-        print('producing {}...'.format(x))
+        # produce an item (simulate slow proces using sleep)
+        print('producing {}...'.format(item))
         await asyncio.sleep(random.random())
-        await queue.put(x)
+        item = str(x)
+
+        await queue.put(item)
 
 
 async def consume(queue):
     while True:
-        x = await queue.get()
-        print('consuming {}...'.format(x))
+        # wait for an item from the producer
+        item = await queue.get()
+
+        # process the item
+        print('consuming {}...'.format(item))
         await asyncio.sleep(random.random())
+
+        # we are done with the item
         queue.task_done()
 
 
