@@ -9,6 +9,7 @@ Contents:
    getting_started.rst
    hello_world.rst
    http_client.rst
+   threads.rst
    tcp_echo_client.rst
    twisted.rst
    getting_help.rst
