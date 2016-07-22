@@ -5,7 +5,6 @@ def compute_pi(digits):
     return 3.14
 
 
-@asyncio.coroutine
 async def main():
     digits = await loop.run_in_executor(None, compute_pi, 20000)
     print("pi: %s" % digits)
