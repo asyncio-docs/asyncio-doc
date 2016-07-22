@@ -7,4 +7,4 @@ second, while the second is scheduled every minute.
 
 The function `asyncio.gather` is used to schedule both coroutines at once.
 
-.. literalinclude:: hello_clock.py
+.. literalinclude:: examples/hello_clock.py
