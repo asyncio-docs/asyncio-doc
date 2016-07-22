@@ -6,6 +6,7 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   getting_started.rst
    hello_world.rst
    http_client.rst
    tcp_echo_client.rst
