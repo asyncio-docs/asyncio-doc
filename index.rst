@@ -8,6 +8,7 @@ Contents:
 
    hello_world.rst
    tcp_echo_client.rst
+   twisted.rst
    getting_help.rst
 
 See also:
