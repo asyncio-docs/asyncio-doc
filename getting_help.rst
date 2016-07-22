@@ -24,5 +24,5 @@ read new questions but also read answers of previous questions.
 IRC
 ===
 
-There is an IRC channel ``#asyncio`` on the Freenode server.
-
+There is an IRC channel ``#asyncio`` on the `Freenode server
+<https://freenode.net/>`_.
