@@ -19,5 +19,5 @@ See also:
   <https://docs.python.org/dev/library/asyncio.html>`_.
 * `A Web Crawler With asyncio Coroutines
   <http://aosabook.org/en/500L/a-web-crawler-with-asyncio-coroutines.html>`_
-  by A. Jesse Jiryu Davis and Guido van Rossumu
+  by A. Jesse Jiryu Davis and Guido van Rossum
 * `asyncio.org <http://asyncio.org/>`_
