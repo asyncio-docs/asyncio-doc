@@ -8,11 +8,11 @@ schedule them in the asyncio :term:`event loop <event loop>`.
 Simple coroutine
 ----------------
 
-Example using the :meth:`BaseEventLoop.run_until_complete` method to schedule
+Example using the :meth:`BaseEventLoop.run_until_complete` method to schedule a
 simple function that will wait one second, print 'hello' and then finish.
 
 Because it is launched with `run_until_complete`, the :term:`event loop <event loop>` itself
-with terminate once the :term:`coroutine <coroutine>` is completed.
+will terminate once the :term:`coroutine <coroutine>` is completed.
 
 .. literalinclude:: examples/hello_world.py
 

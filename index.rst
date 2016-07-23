@@ -2,7 +2,7 @@
 Asyncio Documentation
 +++++++++++++++++++++
 
-Chapiter 1: First steps with asyncio
+Chapter 1: First steps with asyncio
 ====================================
 
 .. toctree::
@@ -16,7 +16,7 @@ Chapiter 1: First steps with asyncio
    getting_help.rst
 
 
-Chapiter 2: Advanced topics
+Chapter 2: Advanced topics
 ===========================
 
 .. toctree::
