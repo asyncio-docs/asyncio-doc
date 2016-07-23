@@ -13,3 +13,9 @@ Glossary
 
     event loop
         The event loop is the central execution device to launch execution of coroutines and handle I/O (Network, sub-processes...)
+
+    future
+        It's like a mailbox where you can subscribe to receive a result when it will be done.
+
+    task
+        It represents the execution of a coroutine and take care the result in a future.

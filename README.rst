@@ -10,7 +10,7 @@ Notes to writers
 ================
 
 Tutorials should use Python 3.5 ``async`` and ``await`` keywords rather than
-``yield from``.
+``@asyncio.coroutine`` and ``yield from``.
 
 
 Ideas

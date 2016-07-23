@@ -24,7 +24,7 @@ This second example show how you can schedule multiple :term:`coroutines <corout
 event loop, and then run the :term:`event loop <event loop>`.
 
 Notice that this example will print 'second_hello' before 'first_hello',
-as the second task scheduled waits longer that the first one before printing.
+as the second :term:`task <task>` scheduled waits longer that the first one before printing.
 
 Also note that this example will never terminate, as the  :term:`loop <event loop>` is asked to
 `run_forever`.
@@ -35,8 +35,8 @@ Also note that this example will never terminate, as the  :term:`loop <event loo
 Stopping the loop
 -----------------
 
-This third example adds another task that will stop the :term:`event loop <event loop>` before
-all scheduled tasks could execute, which results in a warning.
+This third example adds another :term:`task <task>` that will stop the :term:`event loop <event loop>` before
+all scheduled :term:`tasks <task>` could execute, which results in a warning.
 
 .. literalinclude:: examples/loop_stop.py
 
