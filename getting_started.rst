@@ -11,7 +11,8 @@ and ``await`` keywords.
 * Mac OS X: install `Homebrew </usr/bin/ruby -e "$(curl -fsSL
   https://raw.githubusercontent.com/Homebrew/install/master/install)">`_ and
   then type ``brew install python3``
-* Linux: Ubuntu 16.04 ships with Python 3.5 included
+* Linux: Ubuntu 16.04+ and Arch linux ship with Python 3.5 included
+  If you don't have Python 3.5+ on your computer, you can compile it or use `Pythonz <https://github.com/saghul/pythonz>`_
 
 
 Create a virtual environment to run examples
