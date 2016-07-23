@@ -24,7 +24,7 @@ This second example show how you can schedule multiple :term:`coroutines <corout
 event loop, and then run the :term:`event loop <event loop>`.
 
 Notice that this example will print 'second_hello' before 'first_hello',
-as the second :term:`task <task>` scheduled waits longer that the first one before printing.
+as the first :term:`task <task>` scheduled waits longer that the second one before printing.
 
 Also note that this example will never terminate, as the  :term:`loop <event loop>` is asked to
 `run_forever`.
