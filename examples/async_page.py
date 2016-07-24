@@ -1,3 +1,5 @@
+# file: async_page.py
+
 """Get a "web page" asynchronously.
 """
 
@@ -27,8 +29,8 @@ async def get_page(host, port, wait=0):
         b'Connection: close',
         b'', b''
     ]))
-    msg_lines = []
     header = []
+    msg_lines = []
     async for raw_line in reader:
         line = raw_line.decode(ENCODING).strip()
         if not line.strip():

@@ -46,11 +46,12 @@ response::
 
 Use different numbers and see how long it takes until the server responds.
 
-The implementation looks like this:
+The full implementation looks like this:
 
 .. literalinclude:: examples/simple_server.py
     :language: python
 
+Let's have a look into the details.
 This provides a simple multi-threaded web server:
 
 .. literalinclude:: examples/simple_server.py
@@ -80,10 +81,12 @@ The rest of the method contains the HTTP header and message.
 A Synchronous Client
 --------------------
 
-Our first attempt is synchronous:
+Our first attempt is synchronous.
+This is the full implementation:
 
 .. literalinclude:: examples/synchronous_client.py
 
+Again, we go through step-by-step.
 
 While about 80 % of the websites use ``utf-8`` as encoding
 (provided by the default in ``ENCODING``), it is a good idea to actually use
@@ -145,11 +148,61 @@ That is the sum of all waiting times.
 Let's see see if we can do better going asynchronously.
 
 
-Getting a Page Asynchronously
------------------------------
+Getting One Page Asynchronously
+-------------------------------
+
+This module contains a functions that reads a page asynchronously,
+using the new Python 3.5 keywords ``async`` and ``await``:
 
 .. literalinclude:: examples/async_page.py
 
+As with the synchronous example, finding out the encoding of the page
+is a good idea.
+This function helps here by going through the lines of the HTTP header,
+which it gets as an argument, searching for ``charset`` and returning is value
+if found.
+Again, the default encoding is ``ISO-8859-1``:
+
+.. literalinclude:: examples/async_page.py
+    :language: python
+    :start-after: ENCODING = 'ISO-8859-1'
+    :end-before: async def get_page
+
+The next function is way more interesting because it actually works
+asynchronously:
+
+.. literalinclude:: examples/async_page.py
+    :language: python
+    :start-after: return ENCODING
+
+The function ``asyncio.open_connection()`` opens a connection to the given URL.
+It returns a coroutine.
+Using ``await``, which had to be ``yield from`` in Python versions prior
+to 3.5, it yields an instance of a ``StreamReader`` and one of a
+``StreamWriter``.
+These only work within the event loop.
+
+Now, we can send a ``GET`` request, suppling our waiting time by
+writing to the ``StreamWriter`` instance ``writer``.
+The request has to be in bytes.
+Therefore, we need to convert our strings in to bytestrings.
+
+Next, we read header and message from the reader, which is a ``StreamReader``
+instance.
+We need to iterate over the reader by using the specific for loop for
+``asyncio``::
+
+    async for raw_line in reader:
+
+
+Header and message are dived by an empty line.
+We just stop the iteration as soon as we found an empty line.
+Handing the header over too ``get_encoding()`` provides the encoding
+of the retrieved page.
+The ``.decode()`` method uses this encoding to convert the read bytes
+into strings.
+After closing the writer, we can return the message lines joined by newline
+characters.
 
 Getting Multiple Pages Asynchronously - Without Time Savings
 ------------------------------------------------------------
