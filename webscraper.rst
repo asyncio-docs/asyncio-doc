@@ -18,8 +18,8 @@ A Mock Web Server
 -----------------
 
 This is a very simple web server. (See below for the code.)
-Its only purpose is to wait for given amount of time.
-Test it by running it form the command line::
+Its only purpose is to wait for a given amount of time.
+Test it by running it from the command line::
 
     python simple_server.py
 
@@ -31,7 +31,7 @@ Now, open a browser and go to this URL::
 
     http://localhost:8000/
 
-You should see this text in your browser:
+You should see this text in your browser::
 
     Waited for 0.00 seconds.
 
@@ -58,9 +58,9 @@ This provides a simple multi-threaded web server:
     :start-after: ENCODING = 'utf-8'
     :end-before: class MyRequestHandle
 
-It uses multiple inheritance. The mix-in class ``ThreadingMixIn``
-provides the multi-threading support and the class ``HTTPServer``
-the HTTP server.
+It uses multiple inheritance.
+The mix-in class ``ThreadingMixIn`` provides the multi-threading support and
+the class ``HTTPServer`` a basic HTTP server.
 
 
 The request handler only has a ``GET`` method:
@@ -73,21 +73,21 @@ The request handler only has a ``GET`` method:
 
 It takes the last entry in the paths with ``self.path[1:]``, i.e.
 our ``2.5``, and tries to convert it into a floating point number.
-This will be the time the function is going to sleep, i.e. wait until
-it answers using ``time.sleep()``.
-The rest of the method is the HTTP header and message.
+This will be the time the function is going to sleep, using ``time.sleep()``.
+This means waits 2.5 seconds until it answers.
+The rest of the method contains the HTTP header and message.
 
 A Synchronous Client
 --------------------
 
-Th first attempt is synchronous:
+Our first attempt is synchronous:
 
 .. literalinclude:: examples/synchronous_client.py
 
 
-Using ``urllib.request.urlopen``, retrieving a web page is rather
-simple. The response is a bytestring and ``.encode()`` is needed
-to convert it into a string.
+Using ``urllib.request.urlopen()``, retrieving a web page is rather simple.
+The response is a bytestring and ``.encode()`` is needed to convert it into a
+string.
 
 
 .. literalinclude:: examples/synchronous_client.py
@@ -122,7 +122,7 @@ Getting Multiple Pages Asynchronously - With Time Savings
 High-Level Approach with ``aiohttp``
 ------------------------------------
 
-.. literalinclude:: aiohttp_client.py
+.. literalinclude:: examples/aiohttp_client.py
 
 
 
