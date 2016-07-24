@@ -85,20 +85,65 @@ Our first attempt is synchronous:
 .. literalinclude:: examples/synchronous_client.py
 
 
-Using ``urllib.request.urlopen()``, retrieving a web page is rather simple.
-The response is a bytestring and ``.encode()`` is needed to convert it into a
-string.
-
+While about 80 % of the websites use ``utf-8`` as encoding
+(provided by the default in ``ENCODING``), it is a good idea to actually use
+the encoding of that is specified by ``charset``.
+This is our helper to find out what the encoding of the page is:
 
 .. literalinclude:: examples/synchronous_client.py
     :language: python
-    :start-after: return entry.split('=')[1].strip()
+    :start-after: ENCODING = 'ISO-8859-1'
+    :end-before: def get_page
+
+It falls back to ``ISO-8859-1`` if it cannot find a specification of the
+encoding.
+
+Using ``urllib.request.urlopen()``, retrieving a web page is rather simple.
+The response is a bytestring and ``.encode()`` is needed to convert it into a
+string:
+
+.. literalinclude:: examples/synchronous_client.py
+    :language: python
+    :start-after: return ENCODING
     :end-before: def get_multiple_pages
+
+Now, we want multiple pages:
 
 .. literalinclude:: examples/synchronous_client.py
     :language: python
     :start-after: return html
     :end-before: if __name__ == '__main__':
+
+We just iterate over the waiting times and call ``get_page()`` for all
+of them.
+The function ``time.perf_counter()`` provides a time stamp.
+Taking two time stamps a different and calculating their difference
+provides the elapsed run time.
+
+Finally, we can run our client::
+
+    python synchronous_client.py
+
+and get this output::
+
+    It took 11.08 seconds for a total waiting time of 11.00.
+    Waited for 1.00 seconds.
+    That's all.
+
+    Waited for 5.00 seconds.
+    That's all.
+
+    Waited for 3.00 seconds.
+    That's all.
+
+    Waited for 2.00 seconds.
+    That's all.
+
+Because we wait for each call to ``get_page()`` to complete, we need to
+wait about 11 seconds.
+That is the sum of all waiting times.
+Let's see see if we can do better going asynchronously.
+
 
 Getting a Page Asynchronously
 -----------------------------
