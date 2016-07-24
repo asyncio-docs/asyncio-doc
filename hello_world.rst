@@ -2,16 +2,19 @@
 Hello World
 +++++++++++
 
-This is a series of examples showing the basics of how write :term:`coroutines <coroutine>` and
+This is a series of examples showing the basics of how write :term:`coroutines
+<coroutine>` and
 schedule them in the asyncio :term:`event loop <event loop>`.
 
 Simple coroutine
 ----------------
 
-Example using the :meth:`BaseEventLoop.run_until_complete` method to schedule a
+Example using the :py:meth:`asyncio.BaseEventLoop.run_until_complete` method to
+schedule a
 simple function that will wait one second, print 'hello' and then finish.
 
-Because it is launched with `run_until_complete`, the :term:`event loop <event loop>` itself
+Because it is launched with `run_until_complete`, the :term:`event loop <event
+loop>` itself
 will terminate once the :term:`coroutine <coroutine>` is completed.
 
 .. literalinclude:: examples/hello_world.py
@@ -20,13 +23,16 @@ will terminate once the :term:`coroutine <coroutine>` is completed.
 Creating tasks
 --------------
 
-This second example show how you can schedule multiple :term:`coroutines <coroutine>` in the
+This second example show how you can schedule multiple :term:`coroutines
+<coroutine>` in the
 event loop, and then run the :term:`event loop <event loop>`.
 
 Notice that this example will print 'second_hello' before 'first_hello',
-as the first :term:`task <task>` scheduled waits longer that the second one before printing.
+as the first :term:`task <task>` scheduled waits longer that the second one
+before printing.
 
-Also note that this example will never terminate, as the  :term:`loop <event loop>` is asked to
+Also note that this example will never terminate, as the  :term:`loop <event
+loop>` is asked to
 `run_forever`.
 
 .. literalinclude:: examples/create_task.py
@@ -35,7 +41,8 @@ Also note that this example will never terminate, as the  :term:`loop <event loo
 Stopping the loop
 -----------------
 
-This third example adds another :term:`task <task>` that will stop the :term:`event loop <event loop>` before
+This third example adds another :term:`task <task>` that will stop the
+:term:`event loop <event loop>` before
 all scheduled :term:`tasks <task>` could execute, which results in a warning.
 
 .. literalinclude:: examples/loop_stop.py
@@ -43,5 +50,6 @@ all scheduled :term:`tasks <task>` could execute, which results in a warning.
 Warning::
 
     Task was destroyed but it is pending!
-    task: <Task pending coro=<say() done, defined at examples/loop_stop.py:3> wait_for=<Future pending cb=[Task._wakeup()]>>
+    task: <Task pending coro=<say() done, defined at examples/loop_stop.py:3>
+    wait_for=<Future pending cb=[Task._wakeup()]>>
 
