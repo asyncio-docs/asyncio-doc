@@ -51,3 +51,11 @@ See also
 * `Writing Redis in Python with asyncio: Part 1
   <http://jamesls.com/writing-redis-in-python-with-asyncio-part-1.html>`_
   by James Saryerwinnie
+
+Contributing
+============
+
+.. toctree::
+   :maxdepth: 2
+
+   README.rst
