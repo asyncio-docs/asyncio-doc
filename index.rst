@@ -13,7 +13,6 @@ Chapter 1: First steps with asyncio
    hello_clock.rst
    http_client.rst
    twisted.rst
-   webscraper.rst
    getting_help.rst
 
 
@@ -28,6 +27,13 @@ Chapter 2: Advanced topics
    producer_consumer.rst
    debug_mode.rst
 
+Chapter 3: Larger examples
+==========================
+
+.. toctree::
+   :maxdepth: 2
+
+   webscraper.rst
 
 Indices and tables
 ==================
