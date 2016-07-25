@@ -21,6 +21,20 @@ and ``await`` keywords.
   If you don't have Python 3.5+ on your computer, you can compile it or use
   `Pythonz <https://github.com/saghul/pythonz>`_
 
+.. note::
+    On windows there is a known `bug <http://bugs.python.org/issue23057>`_ which
+    results in the program not responding to a Ctrl-C or `KeyboartInterrupt`.
+    One solution as given `On Stack Overflow
+    <http://stackoverflow.com/a/37420223/1671693>`_ is to add the following
+    lines. These can be added to the provided examples to restore Ctrl C
+    behavior.
+
+ ::
+
+     # This restores the default Ctrl+C signal handler, which just kills the process
+     import signal
+     signal.signal(signal.SIGINT, signal.SIG_DFL)
+
 
 Create a virtual environment to run examples
 ============================================
