@@ -18,7 +18,6 @@ def get_multiple_pages(host, port, waits, show_time=True):
     with closing(asyncio.get_event_loop()) as loop:
         for wait in waits:
             pages.append(loop.run_until_complete(get_page(host, port, wait)))
-
     duration = time.perf_counter() - start
     sum_waits = sum(waits)
     if show_time:
