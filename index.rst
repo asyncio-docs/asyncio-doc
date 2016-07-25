@@ -59,10 +59,11 @@ See also
   by James Saryerwinnie
 
 
-Contribute
-==========
+Contributing
+============
 
 .. toctree::
    :maxdepth: 2
 
    README.rst
+
