@@ -272,9 +272,85 @@ Let's see if we can do better.
 Getting Multiple Pages Asynchronously - With Time Savings
 ---------------------------------------------------------
 
+We want to take advantage of the asynchronous nature of ``get_page()``
+and save time.
+We modify our client to use a list with four instances of
+a :term:`task <task>`.
+This allows us to send out requests for all pages we want to retrieve without
+waiting for the answer before asking for the next page:
 
 .. literalinclude:: examples/async_client_nonblocking.py
 
+The interesting part is in this loop:
+
+.. code-block:: python
+
+    with closing(asyncio.get_event_loop()) as loop:
+        for wait in waits:
+            tasks.append(get_page(host, port, wait))
+        pages = loop.run_until_complete(asyncio.gather(*tasks))
+
+We append all return values of ``get_page()`` to our lits of tasks.
+This allows us to send out all request, in our case four, without
+waiting for the answers.
+After sending all of them, we wait for the answers, using:
+
+.. code-block:: python
+
+    loop.run_until_complete(asyncio.gather(*tasks))
+
+We used ``loop.run_until_complete()`` already for each call to ``get_page()``
+in the previous section.
+The difference here is the use of ``asyncio.gather()`` that is called with all
+our tasks in the list ``tasks`` as arguments.
+The ``asyncio.gather(*tasks)`` means for our example with four list entries:
+
+.. code-block:: python
+
+    asyncio.gather(tasks[0], tasks[1], tasks[2], tasks[3])
+
+So, for a list with 100 tasks it would mean:
+
+.. code-block:: python
+
+    asyncio.gather(tasks[0], tasks[1], tasks[2],
+                   # 96 more tasks here
+                   tasks[99])
+
+
+Let's see if we got any faster::
+
+    async_client_nonblocking.py
+    It took 5.08 seconds for a total waiting time of 11.00.
+    Waited for 1.00 seconds.
+    That's all.
+    Waited for 5.00 seconds.
+    That's all.
+    Waited for 3.00 seconds.
+    That's all.
+    Waited for 2.00 seconds.
+    That's all.
+
+Yes! It works.
+The total run time is about five seconds.
+This is the run time for the longest wait.
+Now, we don't have to wait for the sum of ``waits`` but rather for
+``max(waits)``.
+
+We did quite a bit of work, sending a request and scanning an answer,
+including finding out the encoding.
+There should be a shorter way as these steps seem to be always necessary for
+getting the page content with the right encoding.
+Therefore, in the next section, we will have a look at high-level library
+``aiohttp`` that can help to make our code shorter.
+
+Exercise
+++++++++
+
+Add more waiting times to the list ``waits`` and see how this impacts
+the run times of the blocking and the non-blocking implementation.
+Try (positive) numbers that are all less than five.
+Try numbers greater than five.
 
 High-Level Approach with ``aiohttp``
 ------------------------------------
