@@ -28,6 +28,8 @@ class MyRequestHandler(BaseHTTPRequestHandler):
             seconds = float(self.path[1:])
         except ValueError:
             seconds = 0.0
+        if seconds < 0:
+            seconds = 0.0
         text = "Waited for {:4.2f} seconds.\nThat's all.\n"
         msg = text.format(seconds).encode(ENCODING)
         time.sleep(seconds)
