@@ -4,13 +4,13 @@ Web Scraping
 
 Web scraping means downloading multiple web pages, often from different
 servers.
-Typically, there is a considerable waiting time involved between sending a
-request and receiving the answer.
+Typically, there is a considerable waiting time between sending a request and
+receiving the answer.
 Using a client that always waits for the server to answer before sending
-the next request, means spending most of time waiting.
-Here ``asyncio`` can help to send many request without waiting for a response
+the next request, can lead to spending most of time waiting.
+Here ``asyncio`` can help to send many requests without waiting for a response
 and collecting the answers later.
-The next examples show how a synchronous client spends most of the
+The following examples show how a synchronous client spends most of the time
 waiting and how to use ``asyncio`` to write asynchronous client that
 can handle many requests concurrently.
 
@@ -75,7 +75,7 @@ The request handler only has a ``GET`` method:
 It takes the last entry in the paths with ``self.path[1:]``, i.e.
 our ``2.5``, and tries to convert it into a floating point number.
 This will be the time the function is going to sleep, using ``time.sleep()``.
-This means waits 2.5 seconds until it answers.
+This means waiting 2.5 seconds until it answers.
 The rest of the method contains the HTTP header and message.
 
 A Synchronous Client
@@ -86,11 +86,11 @@ This is the full implementation:
 
 .. literalinclude:: examples/synchronous_client.py
 
-Again, we go through step-by-step.
+Again, we go through it step-by-step.
 
 While about 80 % of the websites use ``utf-8`` as encoding
 (provided by the default in ``ENCODING``), it is a good idea to actually use
-the encoding of that is specified by ``charset``.
+the encoding specified by ``charset``.
 This is our helper to find out what the encoding of the page is:
 
 .. literalinclude:: examples/synchronous_client.py
@@ -120,8 +120,8 @@ Now, we want multiple pages:
 We just iterate over the waiting times and call ``get_page()`` for all
 of them.
 The function ``time.perf_counter()`` provides a time stamp.
-Taking two time stamps a different and calculating their difference
-provides the elapsed run time.
+Taking two time stamps a different points in time and calculating their
+difference provides the elapsed run time.
 
 Finally, we can run our client::
 
@@ -145,7 +145,7 @@ and get this output::
 Because we wait for each call to ``get_page()`` to complete, we need to
 wait about 11 seconds.
 That is the sum of all waiting times.
-Let's see see if we can do better going asynchronously.
+Let's see if we can do it any better going asynchronously.
 
 
 Getting One Page Asynchronously
@@ -159,7 +159,7 @@ using the new Python 3.5 keywords ``async`` and ``await``:
 As with the synchronous example, finding out the encoding of the page
 is a good idea.
 This function helps here by going through the lines of the HTTP header,
-which it gets as an argument, searching for ``charset`` and returning is value
+which it gets as an argument, searching for ``charset`` and returning its value
 if found.
 Again, the default encoding is ``ISO-8859-1``:
 
@@ -189,7 +189,7 @@ Therefore, we need to convert our strings in to bytestrings.
 
 Next, we read header and message from the reader, which is a ``StreamReader``
 instance.
-We need to iterate over the reader by using the specific for loop for
+We need to iterate over the reader by using a special or loop for
 ``asyncio``:
 
 .. code-block:: python
@@ -350,7 +350,7 @@ Exercise
 Add more waiting times to the list ``waits`` and see how this impacts
 the run times of the blocking and the non-blocking implementation.
 Try (positive) numbers that are all less than five.
-Try numbers greater than five.
+Then try numbers greater than five.
 
 High-Level Approach with ``aiohttp``
 ------------------------------------
@@ -376,8 +376,8 @@ The function to get one page is asynchronous, because of the ``async def``:
     :start-after: import aiohttp
     :end-before: def get_multiple_pages
 
-The arguments are the same as for the previous function to retrieve one page
-plus the additional argument ``session``.
+The arguments are the same as those for the previous function to retrieve one
+page plus the additional argument ``session``.
 The first task is to construct the full URL as a string from the given
 host, port, and the desired waiting time.
 
