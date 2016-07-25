@@ -259,8 +259,12 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'AsyncioDocumentation.tex', u'Asyncio Documentation Documentation',
-     u'Victor Stinner', 'manual'),
+    (master_doc,
+     'AsyncioDocumentation.tex',
+     u'Asyncio Documentation Documentation',
+     # TODO: Add more authors here
+     ur'Victor Stinner \\ Mike Müller',
+     'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
