@@ -1,6 +1,6 @@
-+++++++++++++++++++++++++++++
-Larger Example - Web Scraping
-+++++++++++++++++++++++++++++
+++++++++++++
+Web Scraping
+++++++++++++
 
 Web scraping means downloading multiple web pages, often from different
 servers.
@@ -21,7 +21,7 @@ This is a very simple web server. (See below for the code.)
 Its only purpose is to wait for a given amount of time.
 Test it by running it from the command line::
 
-    python simple_server.py
+    $ python simple_server.py
 
 It will answer like this::
 
@@ -125,7 +125,7 @@ provides the elapsed run time.
 
 Finally, we can run our client::
 
-    python synchronous_client.py
+    $ python synchronous_client.py
 
 and get this output::
 
@@ -254,7 +254,7 @@ This means, we wait until each pages has been retrieved before asking for
 the next.
 Let's run it from the command-line to see what happens::
 
-    async_client_blocking.py
+    $ async_client_blocking.py
     It took 11.06 seconds for a total waiting time of 11.00.
     Waited for 1.00 seconds.
     That's all.
@@ -320,7 +320,7 @@ So, for a list with 100 tasks it would mean:
 
 Let's see if we got any faster::
 
-    async_client_nonblocking.py
+    $ async_client_nonblocking.py
     It took 5.08 seconds for a total waiting time of 11.00.
     Waited for 1.00 seconds.
     That's all.
@@ -355,7 +355,76 @@ Try numbers greater than five.
 High-Level Approach with ``aiohttp``
 ------------------------------------
 
+The library aiohttp_ allows to write HTTP client and server applications,
+using a high-level approach.
+Install with::
+
+    $ pip install aiohttp
+
+
+.. _aiohttp: http://aiohttp.readthedocs.io/en/stable/
+
+The whole program looks like this:
+
 .. literalinclude:: examples/aiohttp_client.py
 
+The function to get one page is asynchronous, because of the ``async def``:
 
+
+.. literalinclude:: examples/aiohttp_client.py
+    :language: python
+    :start-after: import aiohttp
+    :end-before: def get_multiple_pages
+
+The arguments are the same as for the previous function to retrieve one page
+plus the additional argument ``session``.
+The first task is to construct the full URL as a string from the given
+host, port, and the desired waiting time.
+
+We use a timeout of 10 seconds.
+If it takes longer than the given time to retrieve a page, the programm
+throws a ``TimeoutError``.
+Therefore, to make this more robust, you might want to catch this error and
+handle it appropriately.
+
+The ``async with`` provides a context manager that gives us a response.
+After checking the status being ``200``, which means that all is alright,
+we need to ``await`` again to return the body of the page, using the method
+``text()`` on the response.
+
+This is the interesting part of ``get_multiple_pages()``:
+
+.. code-block:: python
+
+    with closing(asyncio.get_event_loop()) as loop:
+        with aiohttp.ClientSession(loop=loop) as session:
+            for wait in waits:
+                tasks.append(fetch_page(session, host, port, wait))
+            pages = loop.run_until_complete(asyncio.gather(*tasks))
+
+It is very similar to the code in the example of the time-saving implementation
+with ``asyncio``.
+The only difference is the opened client session and handing over this session
+to ``fetch_page()`` as the first argument.
+
+Finally, we run this program::
+
+    $ python aiohttp_client.py
+    It took 5.04 seconds for a total waiting time of 11.00.
+    Waited for 1.00 seconds.
+    That's all.
+
+    Waited for 5.00 seconds.
+    That's all.
+
+    Waited for 3.00 seconds.
+    That's all.
+
+    Waited for 2.00 seconds.
+    That's all.
+
+It also takes about five seconds and gives the same output as our version
+before.
+But the implementation for getting a single page is much simpler and takes
+care of the encoding and other aspects not mentioned here.
 
