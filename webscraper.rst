@@ -190,7 +190,9 @@ Therefore, we need to convert our strings in to bytestrings.
 Next, we read header and message from the reader, which is a ``StreamReader``
 instance.
 We need to iterate over the reader by using the specific for loop for
-``asyncio``::
+``asyncio``:
+
+.. code-block:: python
 
     async for raw_line in reader:
 
@@ -207,8 +209,65 @@ characters.
 Getting Multiple Pages Asynchronously - Without Time Savings
 ------------------------------------------------------------
 
+This is our first approach retrieving multiple pages, using our asynchronous
+``get_page()``:
+
+
 .. literalinclude:: examples/async_client_blocking.py
 
+
+The interesting things happen in a few lines in ``get_multiple_pages()``
+(the rest of this function just measures the run time and displays it):
+
+.. literalinclude:: examples/async_client_blocking.py
+    :language: python
+    :start-after: pages = []
+    :end-before: duration
+
+The ``closing`` from the standard library module ``contextlib`` starts
+the event loop within a context and closes the loop when leaving the context:
+
+.. code-block:: python
+
+    with closing(asyncio.get_event_loop()) as loop:
+        <body>
+
+The two lines above are equivalent to these five lines:
+
+.. code-block:: python
+
+    loop = asyncio.get_event_loop():
+    try:
+        <body>
+    finally:
+        loop.close()
+
+We call ``get_page()`` for each page in a loop.
+Here we decide to wrap each call in ``loop.run_until_complete()``:
+
+.. code-block:: python
+
+    for wait in waits:
+        pages.append(loop.run_until_complete(get_page(host, port, wait)))
+
+This means, we wait until each pages has been retrieved before asking for
+the next.
+Let's run it from the command-line to see what happens::
+
+    async_client_blocking.py
+    It took 11.06 seconds for a total waiting time of 11.00.
+    Waited for 1.00 seconds.
+    That's all.
+    Waited for 5.00 seconds.
+    That's all.
+    Waited for 3.00 seconds.
+    That's all.
+    Waited for 2.00 seconds.
+    That's all.
+
+So it still takes about eleven seconds in total.
+We made it more complex and did not improve speed.
+Let's see if we can do better.
 
 Getting Multiple Pages Asynchronously - With Time Savings
 ---------------------------------------------------------
