@@ -7,4 +7,4 @@ HTTP client example:
 .. literalinclude:: examples/http_client.py
 
 For more information, see `aiohttp documentation
-<http://aiohttp.readthedocs.io/>`_.
+<https://aiohttp.readthedocs.io/>`_.

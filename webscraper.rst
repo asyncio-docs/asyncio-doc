@@ -362,7 +362,7 @@ Install with::
     $ pip install aiohttp
 
 
-.. _aiohttp: http://aiohttp.readthedocs.io/en/stable/
+.. _aiohttp: https://aiohttp.readthedocs.io/en/stable/
 
 The whole program looks like this:
 
