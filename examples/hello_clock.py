@@ -6,12 +6,12 @@ async def print_every_second():
     while True:
         for i in range(60):
             print(i, 's')
-            await asyncio.sleep(1 * 0.1)
+            await asyncio.sleep(1)
 
 
 async def print_every_minute():
     for i in range(1, 10):
-        await asyncio.sleep(60 * 0.1)
+        await asyncio.sleep(60)
         print(i, 'minute')
 
 
