@@ -24,6 +24,7 @@ Chapter 2: Advanced topics
 
    tcp_echo.rst
    threads.rst
+   subprocess.rst
    producer_consumer.rst
    debug_mode.rst
 
@@ -66,4 +67,3 @@ Contributing
    :maxdepth: 2
 
    README.rst
-
