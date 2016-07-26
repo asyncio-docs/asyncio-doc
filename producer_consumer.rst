@@ -20,7 +20,7 @@ A simple producer/consumer example, using `Queue.task_done
 and `Queue.join
 <https://docs.python.org/3/library/asyncio-queue.html#asyncio.Queue.join>`_:
 
-.. literalinclude:: examples/producer_consumer_2.py
+.. literalinclude:: examples/producer_consumer_join.py
 
 For more information, see the `asyncio queue documentation
 <https://docs.python.org/3/library/asyncio-queue.html>`_.
