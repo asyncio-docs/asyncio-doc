@@ -2,19 +2,19 @@
 Hello World
 +++++++++++
 
-This is a series of examples showing the basics of how write :term:`coroutines
-<coroutine>` and
-schedule them in the asyncio :term:`event loop <event loop>`.
+This is a series of examples showing the basics of how to write
+:term:`coroutines <coroutine>` and schedule them in the asyncio
+:term:`event loop <event loop>`.
 
 Simple coroutine
 ----------------
 
-Example using the :py:meth:`asyncio.BaseEventLoop.run_until_complete` method to
-schedule a
-simple function that will wait one second, print 'hello' and then finish.
+This example uses the :py:meth:`asyncio.BaseEventLoop.run_until_complete`
+method to schedule a simple function that will wait one second, print
+``hello`` and then finish.
 
-Because it is launched with `run_until_complete`, the :term:`event loop <event
-loop>` itself
+Because it is launched with :py:meth:`run_until_complete`,
+the :term:`event loop <event loop>` itself
 will terminate once the :term:`coroutine <coroutine>` is completed.
 
 .. literalinclude:: examples/hello_world.py
@@ -23,11 +23,11 @@ will terminate once the :term:`coroutine <coroutine>` is completed.
 Creating tasks
 --------------
 
-This second example show how you can schedule multiple :term:`coroutines
+This second example shows how you can schedule multiple :term:`coroutines
 <coroutine>` in the
 event loop, and then run the :term:`event loop <event loop>`.
 
-Notice that this example will print 'second_hello' before 'first_hello',
+Notice that this example will print ``second_hello`` before ``first_hello``,
 as the first :term:`task <task>` scheduled waits longer that the second one
 before printing.
 
