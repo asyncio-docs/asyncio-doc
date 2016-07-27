@@ -5,7 +5,8 @@ from twisted.internet import reactor
 def multiply(x):
     result = x * 2
     d = defer.Deferred()
-    reactor.callLater(1.0, d.callback, result)
+    reactor.callLater(1.0, d.callback,
+                      result)
     return d
 
 
