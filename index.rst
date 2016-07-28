@@ -2,7 +2,7 @@
 Asyncio Documentation
 +++++++++++++++++++++
 
-Chapiter 1: First steps with asyncio
+Chapter 1: First steps with asyncio
 ====================================
 
 .. toctree::
@@ -16,7 +16,7 @@ Chapiter 1: First steps with asyncio
    getting_help.rst
 
 
-Chapiter 2: Advanced topics
+Chapter 2: Advanced topics
 ===========================
 
 .. toctree::
@@ -24,9 +24,17 @@ Chapiter 2: Advanced topics
 
    tcp_echo.rst
    threads.rst
+   subprocess.rst
    producer_consumer.rst
    debug_mode.rst
 
+Chapter 3: Larger examples
+==========================
+
+.. toctree::
+   :maxdepth: 2
+
+   webscraper.rst
 
 Indices and tables
 ==================
@@ -50,3 +58,12 @@ See also
 * `Writing Redis in Python with asyncio: Part 1
   <http://jamesls.com/writing-redis-in-python-with-asyncio-part-1.html>`_
   by James Saryerwinnie
+
+
+Contributing
+============
+
+.. toctree::
+   :maxdepth: 2
+
+   README.rst

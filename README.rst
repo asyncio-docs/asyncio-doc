@@ -1,8 +1,8 @@
 Asyncio documentation
 =====================
 
-* Online doc: http://asyncio.readthedocs.io/
-* GitHub: https://github.com/haypo/asyncio-doc
+* Online doc: https://asyncio.readthedocs.io/
+* GitHub: https://github.com/asyncio-doc/asyncio-doc
 * AsyncIO documentation is written with `Sphinx <http://www.sphinx-doc.org/>`_.
 
 
@@ -10,7 +10,7 @@ Notes to writers
 ================
 
 Tutorials should use Python 3.5 ``async`` and ``await`` keywords rather than
-``yield from``.
+``@asyncio.coroutine`` and ``yield from``.
 
 
 Ideas
@@ -19,7 +19,8 @@ Ideas
 * Advanced section:
 
   - protocols and transports: as least point to good implementations
-  - explain how to *test* asyncio applications. `Twisted documentation example <https://twistedmatrix.com/documents/current/core/howto/trial.html>`_
+  - explain how to *test* asyncio applications. `Twisted documentation example
+    <https://twistedmatrix.com/documents/current/core/howto/trial.html>`_
 
 How to install Sphinx
 =====================
@@ -49,4 +50,4 @@ See also
 
 * https://github.com/python/asyncio
 * http://krondo.com/an-introduction-to-asynchronous-programming-and-twisted/
-* http://curio.readthedocs.io/en/latest/tutorial.html
+* https://curio.readthedocs.io/en/latest/tutorial.html
