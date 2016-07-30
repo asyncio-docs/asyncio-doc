@@ -65,6 +65,6 @@ If you don't use conda (see above), create a virtual environment::
 
 Activate the virtual environment and install ``aiohttp`` inside:
 
-    source ./venv/bin/activate
+    source venv/bin/activate
     pip install -U aiohttp
 
