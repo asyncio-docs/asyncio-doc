@@ -8,6 +8,7 @@ Chapter 1: First steps with asyncio
 .. toctree::
    :maxdepth: 2
 
+   why_asyncio.rst
    getting_started.rst
    hello_world.rst
    hello_clock.rst
