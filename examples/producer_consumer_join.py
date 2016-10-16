@@ -29,9 +29,13 @@ async def consume(queue):
 
 async def run(n):
     queue = asyncio.Queue()
+    # register the consume coroutine
     consumer = asyncio.ensure_future(consume(queue))
+    # launch the producer and wait for completion
     await produce(queue, n)
+    # ensure the consumer consumes all produced items
     await queue.join()
+    # consumer is always awaiting for a new item, cancel it
     consumer.cancel()
 
 
