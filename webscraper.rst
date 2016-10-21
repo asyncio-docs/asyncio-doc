@@ -397,7 +397,7 @@ This is the interesting part of ``get_multiple_pages()``:
 .. code-block:: python
 
     with closing(asyncio.get_event_loop()) as loop:
-        with aiohttp.ClientSession(loop=loop) as session:
+        with aiohttp.ClientSession() as session:
             for wait in waits:
                 tasks.append(fetch_page(session, host, port, wait))
             pages = loop.run_until_complete(asyncio.gather(*tasks))
@@ -427,4 +427,3 @@ It also takes about five seconds and gives the same output as our version
 before.
 But the implementation for getting a single page is much simpler and takes
 care of the encoding and other aspects not mentioned here.
-

@@ -31,7 +31,7 @@ async def consume(queue):
 
 
 loop = asyncio.get_event_loop()
-queue = asyncio.Queue(loop=loop)
+queue = asyncio.Queue()
 producer_coro = produce(queue, 10)
 consumer_coro = consume(queue)
 loop.run_until_complete(asyncio.gather(producer_coro, consumer_coro))

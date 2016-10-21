@@ -8,7 +8,7 @@ async def fetch_page(session, url):
             return await response.read()
 
 loop = asyncio.get_event_loop()
-with aiohttp.ClientSession(loop=loop) as session:
+with aiohttp.ClientSession() as session:
     content = loop.run_until_complete(
         fetch_page(session, 'http://python.org'))
     print(content)

@@ -25,7 +25,7 @@ def get_multiple_pages(host, waits, port=8000, show_time=True):
     pages = []
     start = time.perf_counter()
     with closing(asyncio.get_event_loop()) as loop:
-        with aiohttp.ClientSession(loop=loop) as session:
+        with aiohttp.ClientSession() as session:
             for wait in waits:
                 tasks.append(fetch_page(session, host, port, wait))
             pages = loop.run_until_complete(asyncio.gather(*tasks))
