@@ -26,7 +26,7 @@ How to install Sphinx
 =====================
 
 Firstly, you need to install the Sphinx tool using the Linux package manager
-like ap-tget or dnf for example.
+like apt-get or dnf for example.
 
 But if you want to install it via `pip <https://pip.pypa.io/en/stable/>`_ , you
 can create a virtual environment with the `venv` module of Python 3 ::
