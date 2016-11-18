@@ -19,28 +19,40 @@ A Mock Web Server
 
 This is a very simple web server. (See below for the code.)
 Its only purpose is to wait for a given amount of time.
-Test it by running it from the command line::
+Test it by running it from the command line:
+
+.. sourcecode:: console
 
     $ python simple_server.py
 
-It will answer like this::
+It will answer like this:
+
+.. sourcecode:: console
 
     Serving from port 8000 ...
 
-Now, open a browser and go to this URL::
+Now, open a browser and go to this URL:
+
+.. sourcecode:: console
 
     http://localhost:8000/
 
-You should see this text in your browser::
+You should see this text in your browser:
+
+.. sourcecode:: console
 
     Waited for 0.00 seconds.
 
-Now, add ``2.5`` to the URL::
+Now, add ``2.5`` to the URL:
+
+.. sourcecode:: console
 
    http://localhost:8000/2.5
 
 After pressing enter, it will take 2.5 seconds until you see this
-response::
+response:
+
+.. sourcecode:: console
 
     Waited for 2.50 seconds.
 
@@ -49,7 +61,6 @@ Use different numbers and see how long it takes until the server responds.
 The full implementation looks like this:
 
 .. literalinclude:: examples/simple_server.py
-    :language: python
 
 Let's have a look into the details.
 This provides a simple multi-threaded web server:
@@ -113,11 +124,15 @@ The function ``time.perf_counter()`` provides a time stamp.
 Taking two time stamps a different points in time and calculating their
 difference provides the elapsed run time.
 
-Finally, we can run our client::
+Finally, we can run our client:
+
+.. sourcecode:: console
 
     $ python synchronous_client.py
 
-and get this output::
+and get this output:
+
+.. sourcecode:: console
 
     It took 11.08 seconds for a total waiting time of 11.00.
     Waited for 1.00 seconds.
@@ -174,9 +189,7 @@ Therefore, we need to convert our strings in to bytestrings.
 Next, we read header and message from the reader, which is a ``StreamReader``
 instance.
 We need to iterate over the reader by using a special or loop for
-``asyncio``:
-
-.. code-block:: python
+``asyncio``::
 
     async for raw_line in reader:
 
@@ -204,14 +217,15 @@ The interesting things happen in a few lines in ``get_multiple_pages()``
 (the rest of this function just measures the run time and displays it):
 
 .. literalinclude:: examples/async_client_blocking.py
-    :language: python
     :start-after: pages = []
     :end-before: duration
 
 We await ``get_page()`` for each page in a loop.
 This means, we wait until each pages has been retrieved before asking for
 the next.
-Let's run it from the command-line to see what happens::
+Let's run it from the command-line to see what happens:
+
+.. sourcecode:: console
 
     $ async_client_blocking.py
     It took 11.06 seconds for a total waiting time of 11.00.
@@ -249,28 +263,26 @@ The interesting part is in this loop:
 We append all return values of ``get_page()`` to our lits of tasks.
 This allows us to send out all request, in our case four, without
 waiting for the answers.
-After sending all of them, we wait for the answers, using:
+After sending all of them, we wait for the answers, using::
 
     await asyncio.gather(*tasks)
 
 The difference here is the use of ``asyncio.gather()`` that is called with all
 our tasks in the list ``tasks`` as arguments.
-The ``asyncio.gather(*tasks)`` means for our example with four list entries:
-
-.. code-block:: python
+The ``asyncio.gather(*tasks)`` means for our example with four list entries::
 
     asyncio.gather(tasks[0], tasks[1], tasks[2], tasks[3])
 
-So, for a list with 100 tasks it would mean:
-
-.. code-block:: python
+So, for a list with 100 tasks it would mean::
 
     asyncio.gather(tasks[0], tasks[1], tasks[2],
                    # 96 more tasks here
                    tasks[99])
 
 
-Let's see if we got any faster::
+Let's see if we got any faster:
+
+.. sourcecode:: console
 
     $ async_client_nonblocking.py
     It took 5.08 seconds for a total waiting time of 11.00.
@@ -309,10 +321,11 @@ High-Level Approach with ``aiohttp``
 
 The library aiohttp_ allows to write HTTP client and server applications,
 using a high-level approach.
-Install with::
+Install with:
+
+.. sourcecode:: console
 
     $ pip install aiohttp
-
 
 .. _aiohttp: https://aiohttp.readthedocs.io/en/stable/
 
@@ -352,7 +365,9 @@ with ``asyncio``.
 The only difference is the opened client session and handing over this session
 to ``fetch_page()`` as the first argument.
 
-Finally, we run this program::
+Finally, we run this program:
+
+.. sourcecode:: console
 
     $ python aiohttp_client.py
     It took 5.04 seconds for a total waiting time of 11.00.
