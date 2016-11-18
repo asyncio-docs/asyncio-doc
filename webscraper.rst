@@ -55,9 +55,7 @@ Let's have a look into the details.
 This provides a simple multi-threaded web server:
 
 .. literalinclude:: examples/simple_server.py
-    :language: python
-    :start-after: ENCODING = 'utf-8'
-    :end-before: class MyRequestHandle
+    :pyobject: ThreadingHTTPServer
 
 It uses multiple inheritance.
 The mix-in class ``ThreadingMixIn`` provides the multi-threading support and
@@ -68,9 +66,7 @@ The request handler only has a ``GET`` method:
 
 
 .. literalinclude:: examples/simple_server.py
-    :language: python
-    :start-after: pass
-    :end-before: def run(
+    :pyobject: MyRequestHandler
 
 It takes the last entry in the paths with ``self.path[1:]``, i.e.
 our ``2.5``, and tries to convert it into a floating point number.
@@ -94,9 +90,7 @@ the encoding specified by ``charset``.
 This is our helper to find out what the encoding of the page is:
 
 .. literalinclude:: examples/synchronous_client.py
-    :language: python
-    :start-after: ENCODING = 'ISO-8859-1'
-    :end-before: def get_page
+    :pyobject: get_encoding
 
 It falls back to ``ISO-8859-1`` if it cannot find a specification of the
 encoding.
@@ -106,16 +100,12 @@ The response is a bytestring and ``.encode()`` is needed to convert it into a
 string:
 
 .. literalinclude:: examples/synchronous_client.py
-    :language: python
-    :start-after: return ENCODING
-    :end-before: def get_multiple_pages
+    :pyobject: get_page
 
 Now, we want multiple pages:
 
 .. literalinclude:: examples/synchronous_client.py
-    :language: python
-    :start-after: return html
-    :end-before: if __name__ == '__main__':
+    :pyobject: get_multiple_pages
 
 We just iterate over the waiting times and call ``get_page()`` for all
 of them.
@@ -132,13 +122,10 @@ and get this output::
     It took 11.08 seconds for a total waiting time of 11.00.
     Waited for 1.00 seconds.
     That's all.
-
     Waited for 5.00 seconds.
     That's all.
-
     Waited for 3.00 seconds.
     That's all.
-
     Waited for 2.00 seconds.
     That's all.
 
@@ -164,16 +151,13 @@ if found.
 Again, the default encoding is ``ISO-8859-1``:
 
 .. literalinclude:: examples/async_page.py
-    :language: python
-    :start-after: ENCODING = 'ISO-8859-1'
-    :end-before: async def get_page
+    :pyobject: get_encoding
 
 The next function is way more interesting because it actually works
 asynchronously:
 
 .. literalinclude:: examples/async_page.py
-    :language: python
-    :start-after: return ENCODING
+    :pyobject: get_page
 
 The function ``asyncio.open_connection()`` opens a connection to the given URL.
 It returns a coroutine.
@@ -224,32 +208,7 @@ The interesting things happen in a few lines in ``get_multiple_pages()``
     :start-after: pages = []
     :end-before: duration
 
-The ``closing`` from the standard library module ``contextlib`` starts
-the event loop within a context and closes the loop when leaving the context:
-
-.. code-block:: python
-
-    with closing(asyncio.get_event_loop()) as loop:
-        <body>
-
-The two lines above are equivalent to these five lines:
-
-.. code-block:: python
-
-    loop = asyncio.get_event_loop():
-    try:
-        <body>
-    finally:
-        loop.close()
-
-We call ``get_page()`` for each page in a loop.
-Here we decide to wrap each call in ``loop.run_until_complete()``:
-
-.. code-block:: python
-
-    for wait in waits:
-        pages.append(loop.run_until_complete(get_page(host, port, wait)))
-
+We await ``get_page()`` for each page in a loop.
 This means, we wait until each pages has been retrieved before asking for
 the next.
 Let's run it from the command-line to see what happens::
@@ -283,24 +242,17 @@ waiting for the answer before asking for the next page:
 
 The interesting part is in this loop:
 
-.. code-block:: python
-
-    with closing(asyncio.get_event_loop()) as loop:
-        for wait in waits:
-            tasks.append(get_page(host, port, wait))
-        pages = loop.run_until_complete(asyncio.gather(*tasks))
+.. literalinclude:: examples/async_client_blocking.py
+    :start-after: start = time.perf_counter()
+    :end-before: duration
 
 We append all return values of ``get_page()`` to our lits of tasks.
 This allows us to send out all request, in our case four, without
 waiting for the answers.
 After sending all of them, we wait for the answers, using:
 
-.. code-block:: python
+    await asyncio.gather(*tasks)
 
-    loop.run_until_complete(asyncio.gather(*tasks))
-
-We used ``loop.run_until_complete()`` already for each call to ``get_page()``
-in the previous section.
 The difference here is the use of ``asyncio.gather()`` that is called with all
 our tasks in the list ``tasks`` as arguments.
 The ``asyncio.gather(*tasks)`` means for our example with four list entries:
@@ -370,11 +322,8 @@ The whole program looks like this:
 
 The function to get one page is asynchronous, because of the ``async def``:
 
-
 .. literalinclude:: examples/aiohttp_client.py
-    :language: python
-    :start-after: import aiohttp
-    :end-before: def get_multiple_pages
+    :pyobject: fetch_page
 
 The arguments are the same as those for the previous function to retrieve one
 page plus the additional argument ``session``.
@@ -394,13 +343,9 @@ we need to ``await`` again to return the body of the page, using the method
 
 This is the interesting part of ``get_multiple_pages()``:
 
-.. code-block:: python
-
-    with closing(asyncio.get_event_loop()) as loop:
-        with aiohttp.ClientSession() as session:
-            for wait in waits:
-                tasks.append(fetch_page(session, host, port, wait))
-            pages = loop.run_until_complete(asyncio.gather(*tasks))
+.. literalinclude:: examples/aiohttp_client.py
+    :start-after: start = time.perf_counter()
+    :end-before: duration
 
 It is very similar to the code in the example of the time-saving implementation
 with ``asyncio``.
@@ -413,13 +358,10 @@ Finally, we run this program::
     It took 5.04 seconds for a total waiting time of 11.00.
     Waited for 1.00 seconds.
     That's all.
-
     Waited for 5.00 seconds.
     That's all.
-
     Waited for 3.00 seconds.
     That's all.
-
     Waited for 2.00 seconds.
     That's all.
 
