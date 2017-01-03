@@ -19,7 +19,7 @@ def get_encoding(http_response):
 
 
 def get_page(host, port, wait=0):
-    """Get one page suppling `wait` time.
+    """Get one page supplying `wait` time.
 
     The path will be build with: `host:port/wait`
     """
