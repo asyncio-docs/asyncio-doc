@@ -34,5 +34,5 @@ change the behaviour of our code, introduce a new point where the task is
 suspended.
 
 For an example, see the "Ca(sh|che Coherent) Money" section of the `Unyielding
-<https://glyph.twistedmatrix.com/2014/02/unyielding.html>` article (by Glyph,
+<https://glyph.twistedmatrix.com/2014/02/unyielding.html>`_ article (by Glyph,
 February, 2014).
