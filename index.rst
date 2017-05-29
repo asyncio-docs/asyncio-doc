@@ -13,6 +13,7 @@ Chapter 1: First steps with asyncio
    hello_world.rst
    hello_clock.rst
    http_client.rst
+   performance.rst
    twisted.rst
    getting_help.rst
 
