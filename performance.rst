@@ -3,7 +3,7 @@ asyncio performance
 +++++++++++++++++++
 
 Random notes about tuning asyncio for performance. Performance means two
-different teams which might be incompatible:
+different terms which might be incompatible:
 
 * Number of concurrent requests per second
 * Request latency in seconds: min/average/max time to complete a request
