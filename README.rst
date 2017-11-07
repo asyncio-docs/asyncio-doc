@@ -52,3 +52,9 @@ See also
 * https://github.com/python/asyncio
 * http://krondo.com/an-introduction-to-asynchronous-programming-and-twisted/
 * https://curio.readthedocs.io/en/latest/tutorial.html
+
+License
+=======
+
+The content of this site is licensed under the `Creative Commons Attribution
+Share Alike 4.0 License <https://creativecommons.org/licenses/by-sa/4.0/>`_ (CC-BY-SA).
