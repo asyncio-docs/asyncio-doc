@@ -146,7 +146,7 @@ intersphinx_mapping = {'python': ('https://docs.python.org/3.5', None)}
 # documentation.
 #
 html_theme_options = {
-    'github_user': 'asyncio-doc',
+    'github_user': 'asyncio-docs',
     'github_repo': 'asyncio-doc',
     'github_banner': True,
     'github_type': 'star',
