@@ -2,7 +2,7 @@ Asyncio documentation
 =====================
 
 * Online doc: https://asyncio.readthedocs.io/
-* GitHub: https://github.com/asyncio-doc/asyncio-doc
+* GitHub: https://github.com/asyncio-docs/asyncio-doc
 * AsyncIO documentation is written with `Sphinx <http://www.sphinx-doc.org/>`_.
 
 
@@ -49,6 +49,6 @@ Then build the documentation using::
 See also
 ========
 
-* https://github.com/python/asyncio
+* https://docs.python.org/3/library/asyncio.html
 * http://krondo.com/an-introduction-to-asynchronous-programming-and-twisted/
 * https://curio.readthedocs.io/en/latest/tutorial.html
