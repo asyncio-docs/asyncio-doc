@@ -9,11 +9,11 @@ This is a series of examples showing the basics of how to write
 Simple coroutine
 ----------------
 
-This example uses the :py:meth:`asyncio.BaseEventLoop.run_until_complete`
+This example uses the :py:meth:`asyncio.AbstractEventLoop.run_until_complete`
 method to schedule a simple function that will wait one second, print
 ``hello`` and then finish.
 
-Because it is launched with :py:meth:`run_until_complete`,
+Because it is launched with :py:meth:`asyncio.AbstractEventLoop.run_until_complete`,
 the :term:`event loop <event loop>` itself
 will terminate once the :term:`coroutine <coroutine>` is completed.
 
@@ -49,7 +49,9 @@ all scheduled :term:`tasks <task>` could execute, which results in a warning.
 
 Warning::
 
-    Task was destroyed but it is pending!
-    task: <Task pending coro=<say() done, defined at examples/loop_stop.py:3>
-    wait_for=<Future pending cb=[Task._wakeup()]>>
+.. highlight:: none
+
+      Task was destroyed but it is pending!
+      task: <Task pending coro=<say() done, defined at examples/loop_stop.py:3>
+      wait_for=<Future pending cb=[Task._wakeup()]>>
 
