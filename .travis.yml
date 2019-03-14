@@ -1,0 +1,8 @@
+language: python
+python: 3.6
+cache: pip
+
+install: python3 -m pip install -U pip -r requirements.txt
+
+script:
+    - sphinx-build -n -W -q -b html -d _build/doctrees . _build/html

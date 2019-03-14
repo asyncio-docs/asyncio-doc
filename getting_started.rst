@@ -23,18 +23,26 @@ All platforms with ``conda``
 * Create a new Python 3.5 environment (named ``aio35``, use a different
   if you like)::
 
+  .. highlight:: bash
+
        conda create -n aio35 python=3.5
 
 * Activate it.
   Linux and OS X::
 
+  .. highlight:: bash
+
        $ source activate aio35
 
   Windows::
 
+  .. highlight:: bash
+
        $ source activate aio35
 
 * Install ``aiohttp``::
+
+  .. highlight:: bash
 
        $(aio35) pip install aiohttp
 
@@ -42,6 +50,7 @@ Platform specific
 -----------------
 
 .. would be good to have some word about installing on Windows
+
 * Windows: The easiest way to use Python 3.5 would be to use a package manager
   such as conda. See the installation instructions above.
 * Mac OS X: Install `Homebrew </usr/bin/ruby -e "$(curl -fsSL
