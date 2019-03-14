@@ -2,7 +2,7 @@ import asyncio
 
 
 async def print_every_second():
-    "Print seconds"
+    """Print seconds"""
     while True:
         for i in range(60):
             print(i, 's')
