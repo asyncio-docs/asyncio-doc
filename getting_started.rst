@@ -42,6 +42,7 @@ Platform specific
 -----------------
 
 .. would be good to have some word about installing on Windows
+
 * Windows: The easiest way to use Python 3.5 would be to use a package manager
   such as conda. See the installation instructions above.
 * Mac OS X: Install `Homebrew </usr/bin/ruby -e "$(curl -fsSL
