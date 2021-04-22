@@ -8,9 +8,11 @@ Python 3.5 (or higher) only
 This documentation is written for Python 3.5 to avail of the new
 ``async`` and ``await`` keywords.
 
-If you have Python 3.5 installed you only need to install ``aiohttp``::
+If you have Python 3.5 installed you only need to install ``aiohttp``
 
-    pip install -U aiohttp
+.. highlight:: shell
+
+   pip install -U aiohttp
 
 If you don't have Python 3.5 installed yet, you have several options
 to install it.
@@ -22,27 +24,19 @@ All platforms with ``conda``
   `Miniconda <http://conda.pydata.org/miniconda.html>`_  for our platform.
 * Create a new Python 3.5 environment (named ``aio35``, use a different
   if you like)::
-
-  .. highlight:: bash
-
+  
        conda create -n aio35 python=3.5
+.. note::
+   ``conda activate`` and ``conda deactivate`` only work on conda 4.6 and later versions.
+   For conda versions prior to 4.6, run:
+
+      * Windows: ``activate`` or ``deactivate``
+      * Linux and macOS: ``source activate`` or ``source deactivate``
 
 * Activate it.
-  Linux and OS X::
-
-  .. highlight:: bash
-
-       $ source activate aio35
-
-  Windows::
-
-  .. highlight:: bash
-
-       $ source activate aio35
+       $ conda activate aio35
 
 * Install ``aiohttp``::
-
-  .. highlight:: bash
 
        $(aio35) pip install aiohttp
 
