@@ -288,7 +288,7 @@ latex_documents = [
      'AsyncioDocumentation.tex',
      u'Asyncio Documentation Documentation',
      # TODO: Add more authors here
-     ur'Victor Stinner \\ Mike Müller',
+     u'Victor Stinner \\ Mike Müller',
      'manual'),
 ]
 
